@@ -15,6 +15,12 @@ function Vec2.new(x, y)
   return self
 end
 
+---{0, 0} vector
+---@return Vec2
+function Vec2.zero()
+  return Vec2.new(0, 0)
+end
+
 ---Clones an existing 2d vector
 ---@return Vec2
 function Vec2:clone()
@@ -26,6 +32,14 @@ end
 ---@return Vec2
 function Vec2.from_angle(angle)
   return Vec2.new(math.cos(angle), math.sin(angle))
+end
+
+--- Create a vector from magnitude and angle
+---@param magnitude number
+---@param angle number
+---@return Vec2
+function Vec2.from_magnitude_and_angle(magnitude, angle)
+  return Vec2.from_angle(angle):scale(magnitude)
 end
 
 ---Add another vector to the current vector
@@ -66,6 +80,15 @@ function Vec2:rotate(angle)
   self.x = x * cos_a - y * sin_a
   self.y = x * sin_a + y * cos_a
   return self
+end
+
+--- Distance to another vector
+---@param other Vec2
+---@return number
+function Vec2:distance(other)
+  local dx2 = (self.x - other.x) * (self.x - other.x)
+  local dy2 = (self.y - other.y) * (self.y - other.y)
+  return math.sqrt(dx2 + dy2)
 end
 
 --- Moves a given vector towards a target vector
