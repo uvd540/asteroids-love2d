@@ -13,6 +13,7 @@ Ship = {
 function Ship:reset()
   self.position = Vec2.new(400, 400)
   self.velocity = Vec2.new()
+  self.heading = 0
 end
 
 function Ship:update(dt)
