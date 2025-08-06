@@ -10,6 +10,11 @@ Ship = {
   deceleration = 100,
 }
 
+function Ship:reset()
+  self.position = Vec2.new(400, 400)
+  self.velocity = Vec2.new()
+end
+
 function Ship:update(dt)
   if Inputs.turn_left then
     self.heading = self.heading - (self.turn_speed * dt)
